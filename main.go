@@ -59,6 +59,26 @@ func main() {
 			words[i-1] = strconv.FormatInt(number, 10)
 			words[i] = ""
 		}
+		if word == "(up)" && i > 0 {
+			previousWord := words[i-1]
+
+			words[i-1] = strings.ToUpper(previousWord)
+			words[i] = ""
+		}
+		if word == "(low)" && i > 0 {
+			previousWord := words[i-1]
+
+			words[i-1] = strings.ToLower(previousWord)
+			words[i] = ""
+		}
+		if word == "(cap)" && i > 0 {
+			previousWord := words[i-1]
+
+			lowerWord := strings.ToLower(previousWord)
+
+			words[i-1] = strings.ToUpper(lowerWord[:1]) + lowerWord[1:]
+			words[i] = ""
+		}
 	}
 	//result := strings.Join(words, " ")
 

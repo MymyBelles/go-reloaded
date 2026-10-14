@@ -1,1 +1,1 @@
-I have 1E (hex) apples and 10 (bin) bananas
+hello (up) WORLD (low) hELLO (cap)
