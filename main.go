@@ -43,9 +43,34 @@ func main() {
 			words[i-1] = strconv.FormatInt(number, 10)
 			words[i] = " "
 		}
+		if word == "(bin)" && i > 0 {
+			fmt.Println("j'ai trouvé (bin) à la position : ", i)
 
+			previousWord := words[i-1]
+			fmt.Println("nombre binaire :", previousWord)
+
+			number, err := strconv.ParseInt(previousWord, 2, 64)
+			if err != nil {
+				fmt.Println("Erreur de conversion binaire :", err)
+				continue
+			}
+			fmt.Println("Valeur décimale :", number)
+
+			words[i-1] = strconv.FormatInt(number, 10)
+			words[i] = ""
+		}
 	}
-	result := strings.Join(words, " ")
+	//result := strings.Join(words, " ")
+
+	var cleanedWords []string
+
+	for _, word := range words {
+		if word != "" {
+			cleanedWords = append(cleanedWords, word)
+		}
+	}
+
+	result := strings.Join(cleanedWords, " ")
 	fmt.Println("Résultat :", result)
 
 	err = os.WriteFile(outputFile, []byte(result), 0644)
