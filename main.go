@@ -154,6 +154,28 @@ func main() {
 
 	result := strings.Join(cleanedWords, " ")
 
+	// Transformer "a" en "an" devant une voyelle ou h
+	for i := 0; i < len(cleanedWords)-1; i++ {
+		if strings.ToLower(cleanedWords[i]) == "a" {
+			nextWord := strings.ToLower(cleanedWords[i+1])
+
+			if strings.HasPrefix(nextWord, "a") ||
+				strings.HasPrefix(nextWord, "e") ||
+				strings.HasPrefix(nextWord, "i") ||
+				strings.HasPrefix(nextWord, "o") ||
+				strings.HasPrefix(nextWord, "u") ||
+				strings.HasPrefix(nextWord, "h") {
+
+				if cleanedWords[i] == "A" {
+					cleanedWords[i] = "An"
+				} else {
+					cleanedWords[i] = "an"
+				}
+			}
+		}
+	}
+	result = strings.Join(cleanedWords, " ")
+
 	// Corriger les espaces avant les virgules
 	result = strings.ReplaceAll(result, " ,", ",")
 
@@ -178,6 +200,7 @@ func main() {
 	for i := 1; i+1 < len(parts); i += 2 {
 		parts[i] = strings.TrimSpace(parts[i])
 	}
+
 	result = strings.Join(parts, "'")
 
 	fmt.Println("Résultat :", result)
