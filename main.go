@@ -200,6 +200,14 @@ func main() {
 	for i := 1; i+1 < len(parts); i += 2 {
 		parts[i] = strings.TrimSpace(parts[i])
 	}
+	// Regrouper les signes de ponctuation
+	punctuation := []string{".", ",", "!", "?", ":", ";"}
+
+	for _, first := range punctuation {
+		for _, second := range punctuation {
+			result = strings.ReplaceAll(result, first+" "+second, first+second)
+		}
+	}
 
 	result = strings.Join(parts, "'")
 
