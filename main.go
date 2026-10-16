@@ -24,29 +24,24 @@ func main() {
 	text := string(data)
 	words := strings.Fields(text)
 
-	fmt.Println("Mots :", words)
 	for i, word := range words {
 		if word == "(hex)" && i > 0 {
 			fmt.Println("J'ai trouvé le mot hexadécimal à la position ", i)
 
-			previousword := words[i-1]
-			fmt.Println("Mot précédent (hex):", previousword)
-
-			number, err := strconv.ParseInt(previousword, 16, 64)
+			previousword := ""
+			_, err := strconv.ParseInt(previousword, 16, 64)
 
 			if err != nil {
 				fmt.Println("Erreur lors de la conversion du mot précédent en entier:", err)
 				continue
 			}
-			fmt.Println("valeur décimale:", number)
 
-			words[i-1] = strconv.FormatInt(number, 10)
 			words[i] = " "
 		}
 		if word == "(bin)" && i > 0 {
 			fmt.Println("j'ai trouvé (bin) à la position : ", i)
 
-			previousWord := words[i-1]
+			previousWord := ""
 			fmt.Println("nombre binaire :", previousWord)
 
 			number, err := strconv.ParseInt(previousWord, 2, 64)
@@ -56,7 +51,6 @@ func main() {
 			}
 			fmt.Println("Valeur décimale :", number)
 
-			words[i-1] = strconv.FormatInt(number, 10)
 			words[i] = ""
 		}
 		if word == "(up)" && i > 0 {
@@ -210,8 +204,6 @@ func main() {
 	}
 
 	result = strings.Join(parts, "'")
-
-	fmt.Println("Résultat :", result)
 
 	err = os.WriteFile(outputFile, []byte(result), 0644)
 
