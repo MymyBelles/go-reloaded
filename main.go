@@ -79,6 +79,68 @@ func main() {
 			words[i-1] = strings.ToUpper(lowerWord[:1]) + lowerWord[1:]
 			words[i] = ""
 		}
+		if word == "(up," && i+1 < len(words) {
+			numberText := strings.TrimSuffix(words[i+1], ")")
+			count, err := strconv.Atoi(numberText)
+
+			if err != nil {
+				fmt.Println("Erreur : nombre de mots invalide :", err)
+				continue
+			}
+
+			for j := 1; j <= count; j++ {
+				position := i - j
+
+				if position >= 0 {
+					words[position] = strings.ToUpper(words[position])
+				}
+			}
+
+			words[i] = ""
+			words[i+1] = ""
+		}
+
+		if word == "(low," && i+1 < len(words) {
+			numberText := strings.TrimSuffix(words[i+1], ")")
+			count, err := strconv.Atoi(numberText)
+
+			if err != nil {
+				fmt.Println("Erreur : nombre de mots invalide :", err)
+				continue
+			}
+
+			for j := 1; j <= count; j++ {
+				position := i - j
+
+				if position >= 0 {
+					words[position] = strings.ToLower(words[position])
+				}
+			}
+
+			words[i] = ""
+			words[i+1] = ""
+		}
+
+		if word == "(cap," && i+1 < len(words) {
+			numberText := strings.TrimSuffix(words[i+1], ")")
+			count, err := strconv.Atoi(numberText)
+
+			if err != nil {
+				fmt.Println("Erreur : nombre de mots invalide :", err)
+				continue
+			}
+
+			for j := 1; j <= count; j++ {
+				position := i - j
+
+				if position >= 0 {
+					words[position] = strings.Title(strings.ToLower(words[position]))
+				}
+			}
+
+			words[i] = ""
+			words[i+1] = ""
+		}
 	}
 	//result := strings.Join(words, " ")
 
@@ -91,6 +153,33 @@ func main() {
 	}
 
 	result := strings.Join(cleanedWords, " ")
+
+	// Corriger les espaces avant les virgules
+	result = strings.ReplaceAll(result, " ,", ",")
+
+	// Corriger les espaces avant les points
+	result = strings.ReplaceAll(result, " .", ".")
+
+	// Corriger les espaces avant les points d'exclamation
+	result = strings.ReplaceAll(result, " !", "!")
+
+	// Corriger les espaces avant les points d'interrogation
+	result = strings.ReplaceAll(result, " ?", "?")
+
+	// Corriger les espaces avant les deux-points
+	result = strings.ReplaceAll(result, " :", ":")
+
+	// Corriger les espaces avant les points-virgules
+	result = strings.ReplaceAll(result, " ;", ";")
+
+	// Corriger les espaces entre les apostrophes
+	parts := strings.Split(result, "'")
+
+	for i := 1; i+1 < len(parts); i += 2 {
+		parts[i] = strings.TrimSpace(parts[i])
+	}
+	result = strings.Join(parts, "'")
+
 	fmt.Println("Résultat :", result)
 
 	err = os.WriteFile(outputFile, []byte(result), 0644)
