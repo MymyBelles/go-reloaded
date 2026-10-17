@@ -2,31 +2,49 @@
 
 ## Description
 
-Go Reloaded est un projet développé en Go dont l'objectif est de créer un programme capable d elire un fichier texte, d'effectuer différentes tranformations et corrections, puis d'écrire le résultat dans un nouveaufichier.
+Go Reloaded est un projet développé en langage Go. Son objectif est de créer un programme capable de lire un fichier texte, d'effectuer différentes transformations et corrections, puis d'écrire le résultat dans un nouveau fichier.
 
-## Fonctionnalité prévues
+## Fonctionnalités prévues
 
-Le programme devra gérer:
+Le programme permet de :
 
-- la conversion des nombres hexadécimaux en décimal avec `(hex)`
-- la conversion de nombres binaires ne décimalavec `(bin)`
-- la trannformation en majuscule avec `(up)`
-- la tranformation en minuscule avec `(low)`
-- la mmise ne majuscule de la première lettre avce `(cap)`
-- les transformation sur plusieurs mots
-la correction de la ponctuation
-la gestion des apostrophes 
-la correction de  `a` en `an` lorsque nécessaire
+Convertir les nombres hexadécimaux en décimal avec (hex).
+
+Convertir les nombres binaires en décimal avec (bin).
+
+Transformer un mot en majuscules avec (up).
+
+Transformer un mot en minuscules avec (low).
+
+Mettre la première lettre d'un mot en majuscule avec (cap).
+
+Appliquer ces transformations à plusieurs mots avec (up, n), (low, n) et (cap, n).
+
+Corriger les espaces autour des signes de ponctuation.
+
+Gérer les espaces autour des apostrophes.
+
+Remplacer a par an lorsque le mot suivant commence par une voyelle ou un h.
 
 
-## Utilisation 
+### Utilisation
 
-```bash
+Exécuter la commande suivante dans le terminal :
+
 go run . sample.txt result.txt
 
+sample.txt : fichier contenant le texte à transformer.
 
-## Statut
+result.txt : fichier dans lequel le programme écrit le résultat.
 
-Projet en cours de dévelopement.
+#### Technologies utilisées
 
-Étape actuelle : initialisation du projet et mmise ne place de la structure de base.
+Langage Go
+
+Visual Studio Code
+
+Git et GitHub
+
+##### Statut
+
+Projet développé — vérifications finales en cours.

@@ -195,6 +195,9 @@ func main() {
 	for i := 1; i+1 < len(parts); i += 2 {
 		parts[i] = strings.TrimSpace(parts[i])
 	}
+
+	result = strings.Join(parts, "'")
+
 	// Regrouper les signes de ponctuation
 	punctuation := []string{".", ",", "!", "?", ":", ";"}
 
@@ -203,8 +206,6 @@ func main() {
 			result = strings.ReplaceAll(result, first+" "+second, first+second)
 		}
 	}
-
-	result = strings.Join(parts, "'")
 
 	err = os.WriteFile(outputFile, []byte(result), 0644)
 
