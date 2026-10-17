@@ -26,22 +26,22 @@ func main() {
 
 	for i, word := range words {
 		if word == "(hex)" && i > 0 {
-			fmt.Println("J'ai trouvé le mot hexadécimal à la position ", i)
+			previousWord := words[i-1]
 
-			previousword := ""
-			_, err := strconv.ParseInt(previousword, 16, 64)
-
+			number, err := strconv.ParseInt(previousWord, 16, 64)
 			if err != nil {
-				fmt.Println("Erreur lors de la conversion du mot précédent en entier:", err)
+				fmt.Println("Erreur de conversion hexadécimale :", err)
 				continue
 			}
 
-			words[i] = " "
+			words[i-1] = strconv.FormatInt(number, 10)
+			words[i] = ""
 		}
+
 		if word == "(bin)" && i > 0 {
 			fmt.Println("j'ai trouvé (bin) à la position : ", i)
 
-			previousWord := ""
+			previousWord := words[i-1]
 			fmt.Println("nombre binaire :", previousWord)
 
 			number, err := strconv.ParseInt(previousWord, 2, 64)
@@ -51,6 +51,7 @@ func main() {
 			}
 			fmt.Println("Valeur décimale :", number)
 
+			words[i-1] = strconv.FormatInt(number, 10)
 			words[i] = ""
 		}
 		if word == "(up)" && i > 0 {
