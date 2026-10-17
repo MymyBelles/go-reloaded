@@ -1,1 +1,1 @@
-I have 1010 (bin) files and 1E (hex) folders.
+1E (hex) files and 1010 (bin) folders
